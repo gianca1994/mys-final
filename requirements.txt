@@ -1,2 +1,5 @@
+pint
 matplotlib
 python-dotenv
+streamlit
+numpy
