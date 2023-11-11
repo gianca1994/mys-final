@@ -1,40 +1,64 @@
-## Welcome to Predator vs Dam
+# Modelo Depredador-Presa con Lotka-Volterra
+
+## Descripción
+
+Este proyecto simula la interacción entre depredadores y sus presas a través del tiempo, utilizando las conocidas ecuaciones de Lotka-Volterra. Estas ecuaciones representan un modelo matemático de la dinámica biológica de dos especies interactivas, una como presa y la otra como depredador. El modelo ilustra cómo las poblaciones de cada especie cambian con el tiempo, influenciadas por las tasas naturales de nacimiento y muerte, así como por la capacidad del entorno para sostener a la población de presas.
+
+## Variables de Entorno
+
+El modelo utiliza una serie de variables de entorno que permiten personalizar la simulación:
+
+### Presa
+- `DAM_BIRTH_RATE`: Tasa de nacimiento de las presas (`0.1`). Representa la rapidez con que la población de presas puede aumentar en ausencia de depredadores.
+- `DAM_MORTALITY_RATE`: Tasa de mortalidad de las presas debido a la depredación (`0.02`). Indica cuántas presas son capturadas y consumidas por los depredadores.
+- `DAM_AMOUNT`: Cantidad inicial de presas en el modelo (`40`). Es el punto de partida para la población de presas.
+
+### Depredador
+- `PREDATOR_BIRTH_RATE`: Tasa de nacimiento de los depredadores (`0.01`). Esta tasa está ligada al éxito de los depredadores en la captura de las presas.
+- `PREDATOR_MORTALITY_RATE`: Tasa de mortalidad natural de los depredadores (`0.1`). Refleja las pérdidas en la población de depredadores debido a muertes naturales.
+- `PREDATOR_AMOUNT`: Cantidad inicial de depredadores (`9`). Es la cantidad de depredadores con la que comienza la simulación.
+
+### Condiciones Físicas
+- `TERRAIN_MAX_CAP`: Capacidad máxima del terreno (`1500`). Se refiere al límite de la población de presas que el entorno puede soportar.
+- `WEEKS`: Duración de la simulación en semanas (`1000`). Define el período de tiempo sobre el cual se extiende la simulación.
+- `DELTA_T`: Incremento de tiempo para cada paso de la simulación (`0.1`). Determina la granularidad de la simulación temporal.
+
+## Instalación
+
+Para instalar y configurar el entorno necesario para ejecutar las simulaciones, sigue estos pasos:
+
+1. Descarga o clona el repositorio en tu máquina local.
+2. Navega al directorio del proyecto desde tu terminal.
+3. Ejecuta el script `install.sh` con el siguiente comando:
+
+    ```
+    ./install.sh
+    ```
+
+    Este script realizará los siguientes pasos:
+    - Creará un entorno virtual de Python.
+    - Activará el entorno virtual.
+    - Instalará todas las dependencias requeridas que se enumeran en `requirements.txt`.
+
+Una vez finalizada la instalación, estarás listo para ejecutar las simulaciones.
 
 
-For the execution you must first read the file "INSTALL.md", once you have installed the libraries you must execute the file "main.py": ```python3 main.py```
+## Ejecución
 
-- If desired, you can use the parameters ``-d or --dam``, to delimit the number of prey the model will have, ``-p or --predator`` for the number of predators, ``-c or --capcity``, for the size of the terrain and ``-w or --week`` to define the number of weeks the model will be simulated. Example:
+Una vez que hayas instalado todas las dependencias y configurado tu entorno, puedes ejecutar el proyecto de dos maneras:
 
-1. ``python3 main.py -d 500 -p 10 -c 5000 -w 5``, generates a simulation of 500 prey, 10 predators, in a 5000-space terrain and for 5 weeks.
-2. ``python3 main.py``, will generate a default simulation of: 500 prey, 10 predators, 5000 terrain slots and 1 week.
+1. Como una animación gráfica que muestra la dinámica entre depredadores y presas.
+2. A través de una aplicación interactiva con Streamlit que permite ajustar parámetros y visualizar resultados en tiempo real.
 
-- Once the program is executed, it will generate a jpg file called "PredatorVsDam-Model.jpg" in the root of the directory "predator-dam" which will contain a graph detailing the simulation performed. 
+Para facilitar la ejecución, utiliza el script `run.sh` con el siguiente comando:
 
+```
+./run.sh
+```
 
-Por supuesto, aquí te describo cada uno de los parámetros y condiciones iniciales en tu modelo de predador-presa mejorado con la ecuación de Lotka-Volterra:
+Sigue las instrucciones en pantalla para seleccionar la simulación deseada:
 
-### Parámetros:
-
-1. **`alpha = 0.1`**: Este es el parámetro que define la tasa de nacimiento de las presas. Un valor más alto implicaría que la población de presas crece más rápidamente en ausencia de predadores.
-
-2. **`beta = 0.02`**: Este es el parámetro que indica la tasa de mortalidad de las presas debido a la predación. Un valor más alto significa que más presas son comidas por los predadores.
-
-3. **`gamma = 0.1`**: Este es el parámetro que define la tasa de mortalidad de los predadores. Un valor más alto significaría que los predadores mueren más rápidamente.
-
-4. **`delta = 0.01`**: Este parámetro representa la tasa de nacimiento de nuevos predadores. Esencialmente, cuántos nuevos predadores se generan por cada presa comida. Un valor más alto aumentaría el número de predadores más rápidamente.
-
-5. **`K = 1000`**: Este es el parámetro de la capacidad de carga del ambiente. Es el número máximo de individuos (presas, en este caso) que el ambiente puede soportar. Una vez que la población de presas se acerca a este número, su tasa de crecimiento disminuye.
-
-### Condiciones iniciales:
-
-1. **`x0 = 40`**: Este es el número inicial de presas en el sistema. Comienzas la simulación con 40 presas.
-
-2. **`y0 = 9`**: Este es el número inicial de predadores en el sistema. Comienzas la simulación con 9 predadores.
-
-### Tiempo:
-
-1. **`T = 1000`**: Este es el tiempo total de la simulación. Estás corriendo la simulación para un total de 1000 unidades de tiempo.
-
-2. **`dt = 0.15`**: Este es el tamaño del paso de tiempo en la simulación. Un `dt` más pequeño hará que la simulación sea más precisa pero requerirá más tiempo de cómputo. Un `dt` más grande acelerará la simulación pero podría afectar la precisión.
-
-Espero que esta explicación aclare cada uno de los parámetros y condiciones iniciales de tu modelo. ¿Hay algo más en lo que pueda ayudarte?
+* Elige 1 para ejecutar la animación.
+* Elige 2 para lanzar la aplicación Streamlit.
+* 
+Debes asegurarte de que run.sh tenga permisos de ejecución antes de intentar usarlo. Puedes conceder permisos de ejecución con el comando `chmod +x run.sh`.
